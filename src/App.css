@@ -1,0 +1,70 @@
+.wrapper {
+  width: 550px;
+  text-align: center;
+  border: 3px black solid;
+  border-radius: 2%;
+  background-color: gray;
+  margin: 20px auto;
+}
+
+.output {
+  font-size: 40px;
+  margin: 10px 10px;
+  border: 5px black solid;
+  border-radius: 2%;
+  height: 80px;
+  background-color: #bebebe;
+  text-align: center;
+  padding: auto;
+}
+
+.grid {
+  margin: 0 auto;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.num {
+  font-size: 40px;
+  padding: 20px 30px;
+  margin: 20px 20px;
+  cursor: pointer;
+  border: 1px black solid;
+  border-radius: 5%;
+  background-color: #e5d2ff;
+}
+
+.num:hover {
+  background-color: #eadff8;
+}
+
+.num:active {
+  background-color: aliceblue;
+}
+
+.symbols {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.symbols-el {
+  font-size: 40px;
+  padding: 20px 30px;
+  margin: 20px 20px;
+  cursor: pointer;
+  border: 1px black solid;
+  border-radius: 5%;
+  background-color: #ffecd2;
+}
+
+.symbols-el:hover {
+  background-color: #fceedb;
+}
+.symbols-el:active {
+  background-color: #ffffff;
+}
