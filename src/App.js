@@ -1,9 +1,9 @@
-import "./App.css";
+import styles from "./App.module.css";
 import { useState } from "react";
 
 const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-const totalSolution = (string) => {
+const calculation = (string) => {
   const arrNum = string.split(/\D/g);
   const arrSym = string.split(/\d/g).filter((item) => item !== "");
 
@@ -26,32 +26,69 @@ const totalSolution = (string) => {
 
 function App() {
   let [outPut, setOutPut] = useState("");
+  let [showGreenText, setShowGreenText] = useState(false);
+
+  const answerText = () => {
+    setShowGreenText((showGreenText = true));
+  };
+
+  const normalText = () => {
+    setShowGreenText((showGreenText = false));
+  };
 
   return (
-    <div className="App">
-      <div className="wrapper">
-        <div className="output">{outPut}</div>
-        <div className="grid">
+    <div>
+      <div className={styles.wrapper}>
+        <div className={showGreenText ? styles.outputGreen : styles.output}>
+          {outPut}
+        </div>
+        <div className={styles.grid}>
           {numArr.map((num) => (
-            <div className="num" onClick={() => setOutPut(outPut + num)}>
+            <div
+              className={styles.num}
+              onClick={() => {
+                setOutPut(outPut + num);
+              }}
+            >
               {num}
             </div>
           ))}
         </div>
-        <div className="symbols">
-          <div className="symbols-el" onClick={() => setOutPut(outPut + "+")}>
+        <div className={styles.symbols}>
+          <div
+            className={styles.symbolsEl}
+            onClick={() => {
+              setOutPut(outPut + "+");
+              normalText();
+            }}
+          >
             +
           </div>
-          <div className="symbols-el" onClick={() => setOutPut(outPut + "-")}>
+          <div
+            className={styles.symbolsEl}
+            onClick={() => {
+              setOutPut(outPut + "-");
+              normalText();
+            }}
+          >
             -
           </div>
           <div
-            className="symbols-el"
-            onClick={() => setOutPut(totalSolution(outPut))}
+            className={styles.symbolsEl}
+            onClick={() => {
+              setOutPut(calculation(outPut));
+              answerText();
+            }}
           >
             =
           </div>
-          <div className="symbols-el" onClick={() => setOutPut((outPut = ""))}>
+          <div
+            className={styles.symbolsEl}
+            onClick={() => {
+              setOutPut((outPut = ""));
+              normalText();
+            }}
+          >
             C
           </div>
         </div>
