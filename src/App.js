@@ -25,29 +25,32 @@ const calculation = (string) => {
 };
 
 function App() {
-  let [outPut, setOutPut] = useState("");
-  let [showGreenText, setShowGreenText] = useState(false);
-
-  const answerText = () => {
-    setShowGreenText((showGreenText = true));
-  };
-
-  const normalText = () => {
-    setShowGreenText((showGreenText = false));
-  };
+  let [outPutValue, setOutPutValue] = useState({
+    outPut: "",
+    isShowGreenText: false,
+  });
 
   return (
     <div>
       <div className={styles.wrapper}>
-        <div className={showGreenText ? styles.outputGreen : styles.output}>
-          {outPut}
+        <div
+          className={
+            outPutValue.isShowGreenText ? styles.outputGreen : styles.output
+          }
+        >
+          {outPutValue.outPut}
         </div>
         <div className={styles.grid}>
           {numArr.map((num) => (
             <div
               className={styles.num}
               onClick={() => {
-                setOutPut(outPut + num);
+                setOutPutValue({
+                  ...outPutValue,
+                  outPut: `${outPutValue.outPut + num}`,
+                  isShowGreenText: false,
+                });
+                console.log(outPutValue.isShowGreenText);
               }}
             >
               {num}
@@ -58,8 +61,11 @@ function App() {
           <div
             className={styles.symbolsEl}
             onClick={() => {
-              setOutPut(outPut + "+");
-              normalText();
+              setOutPutValue({
+                ...outPutValue,
+                outPut: `${outPutValue.outPut + "+"}`,
+                isShowGreenText: false,
+              });
             }}
           >
             +
@@ -67,8 +73,11 @@ function App() {
           <div
             className={styles.symbolsEl}
             onClick={() => {
-              setOutPut(outPut + "-");
-              normalText();
+              setOutPutValue({
+                ...outPutValue,
+                outPut: `${outPutValue.outPut + "-"}`,
+                isShowGreenText: false,
+              });
             }}
           >
             -
@@ -76,8 +85,11 @@ function App() {
           <div
             className={styles.symbolsEl}
             onClick={() => {
-              setOutPut(calculation(outPut));
-              answerText();
+              setOutPutValue({
+                ...outPutValue,
+                outPut: `${calculation(outPutValue.outPut)}`,
+                isShowGreenText: true,
+              });
             }}
           >
             =
@@ -85,8 +97,11 @@ function App() {
           <div
             className={styles.symbolsEl}
             onClick={() => {
-              setOutPut((outPut = ""));
-              normalText();
+              setOutPutValue({
+                ...outPutValue,
+                outPut: "",
+                isShowGreenText: false,
+              });
             }}
           >
             C
